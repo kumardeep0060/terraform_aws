@@ -7,14 +7,7 @@ pipeline {
 
    agent  any
         stage('checkout') {
-            steps {
-                 script{
-                        dir("terraform")
-                        {
-                            git "https://github.com/kumardeep0060/terraform_aws.git"
-                        }
-                    }
-                }
+            
             }
 
         stage('Plan') {
