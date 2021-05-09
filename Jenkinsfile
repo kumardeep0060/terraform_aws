@@ -35,7 +35,7 @@ pipeline {
 
            steps {
                script {
-                    def plan = readFile 'sh '/var/lib/jenkins/workspace/test_aws_pipeline/tfplan.txt'
+                    def plan = readFile 'sh cd '/var/lib/jenkins/workspace/test_aws_pipeline/tfplan.txt'
                     input message: "Do you want to apply the plan?",
                     parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
                }
@@ -44,7 +44,7 @@ pipeline {
 
         stage('Apply') {
             steps {
-                sh "pwd;cd terraform/aws-instance-first-script ; terraform apply -input=false tfplan"
+                sh "pwd;cd /var/lib/jenkins/workspace/test_aws_pipeline ; terraform apply -input=false tfplan"
             }
         }
     }
