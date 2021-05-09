@@ -19,32 +19,19 @@ pipeline {
 
         stage('Plan') {
             steps {
-                sh 'pwd;cd  /var/lib/jenkins/workspace/test_aws_pipeline ; terraform init -input=false'
-                //sh 'pwd;cd /var/lib/jenkins/workspace/test_aws_pipeline ; terraform workspace new ${environment}'
-                //sh 'pwd;cd /var/lib/jenkins/workspace/test_aws_pipeline ; terraform workspace select ${environment}'
-                sh "pwd;cd /var/lib/jenkins/workspace/test_aws_pipeline ;terraform plan -input=false -out tfplan "
-                sh 'pwd;cd /var/lib/jenkins/workspace/test_aws_pipeline ;terraform show -no-color tfplan > tfplan.txt'
+                 echo "plan done"
             }
         }
         stage('Approval') {
-           when {
-               not {
-                   equals expected: true, actual: params.autoApprove
-               }
-           }
-
+          
            steps {
-               script {
-                    def plan = readFile 'sh cd /var/lib/jenkins/workspace/test_aws_pipeline/tfplan.txt'
-                    input message: "Do you want to apply the plan?",
-                    parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
-               }
+               echo "plan aprove"
            }
        }
 
         stage('Apply') {
             steps {
-                sh "pwd;cd /var/lib/jenkins/workspace/test_aws_pipeline ; terraform apply -input=false tfplan"
+              echo "plan appplied"  
             }
         }
     }
