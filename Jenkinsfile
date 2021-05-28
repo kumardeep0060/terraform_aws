@@ -6,25 +6,25 @@ pipeline {
     }
 
    agent  any
-        stage('checkout') {
+        stages('checkout') {
              steps {
                   echo "hello"
              }
             }
 
-        stage('Plan') {
+        stages('Plan') {
             steps {
                  echo "plan done"
             }
         }
-        stage('Approval') {
+        stages('Approval') {
           
            steps {
                echo "plan aprove"
            }
        }
 
-        stage('Apply') {
+        stages('Apply') {
             steps {
               echo "plan appplied"  
             }
