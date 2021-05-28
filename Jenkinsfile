@@ -7,7 +7,9 @@ pipeline {
 
    agent  any
         stage('checkout') {
-            
+             steps {
+                  echo "hello"
+             }
             }
 
         stage('Plan') {
